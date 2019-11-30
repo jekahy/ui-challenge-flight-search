@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
               child: new Column(
                 children: <Widget>[
                   _buildButtonsRow(),
-                  Expanded(child: ContentCard()), //TODO: Implement a card
+                  Expanded(child: ContentCard()),
                 ],
               ),
             ),

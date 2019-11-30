@@ -1,4 +1,7 @@
+import 'package:flight_search/components/multicity_input.dart';
 import 'package:flutter/material.dart';
+
+import 'price_tab.dart';
 
 class ContentCard extends StatefulWidget {
   @override
@@ -6,6 +9,9 @@ class ContentCard extends StatefulWidget {
 }
 
 class _ContentCardState extends State<ContentCard> {
+
+  bool showInput = true;
+
   @override
   Widget build(BuildContext context) {
     return new Card(
@@ -58,7 +64,11 @@ class _ContentCardState extends State<ContentCard> {
             minHeight: viewportConstraints.maxHeight - 48.0,
           ),
           child: new IntrinsicHeight(
-            child: _buildMulticityTab(),
+            child: showInput
+                ? _buildMulticityTab()
+                : PriceTab(
+                    height: viewportConstraints.maxHeight - 48.0,
+                  ),
           ),
         ),
       ),
@@ -68,12 +78,11 @@ class _ContentCardState extends State<ContentCard> {
   Widget _buildMulticityTab() {
     return Column(
       children: <Widget>[
-        Text("Inputs"), //TODO: Add MultiCity input
-        Expanded(child: Container()),
+        Expanded(child: MulticityInput()),
         Padding(
           padding: const EdgeInsets.only(bottom: 16.0, top: 8.0),
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () => setState(() => showInput = false),
             child: Icon(Icons.timeline, size: 36.0),
           ),
         ),
